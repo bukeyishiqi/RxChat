@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Chat View Controller-->
+        <scene sceneID="F5x-LU-mQc">
+            <objects>
+                <viewController storyboardIdentifier="ChatViewController" hidesBottomBarWhenPushed="YES" id="aTT-t9-SgA" customClass="ChatViewController" customModule="WeChatDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yF4-Xl-mFN"/>
+                        <viewControllerLayoutGuide type="bottom" id="iV7-6v-iYe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Kky-6e-146">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KkW-rk-nFD">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="Cd3-qj-R94">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s2B-JD-abT" customClass="OYChatInputView" customModule="WeChatDemo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="3nZ-8G-KaQ"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="s2B-JD-abT" firstAttribute="top" secondItem="KkW-rk-nFD" secondAttribute="bottom" id="5iU-lp-gzU"/>
+                            <constraint firstItem="KkW-rk-nFD" firstAttribute="top" secondItem="Kky-6e-146" secondAttribute="top" id="QK8-ry-JIe"/>
+                            <constraint firstAttribute="trailing" secondItem="s2B-JD-abT" secondAttribute="trailing" id="WR8-uG-tDD"/>
+                            <constraint firstItem="s2B-JD-abT" firstAttribute="leading" secondItem="Kky-6e-146" secondAttribute="leading" id="bP5-gH-wCT"/>
+                            <constraint firstItem="KkW-rk-nFD" firstAttribute="leading" secondItem="Kky-6e-146" secondAttribute="leading" id="eKL-8j-pjW"/>
+                            <constraint firstAttribute="trailing" secondItem="KkW-rk-nFD" secondAttribute="trailing" id="oM1-dJ-M4u"/>
+                            <constraint firstItem="iV7-6v-iYe" firstAttribute="top" secondItem="s2B-JD-abT" secondAttribute="bottom" id="yIi-w4-0f0"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="chatInputView" destination="s2B-JD-abT" id="Aoc-wf-7yZ"/>
+                        <outlet property="chatInputViewBottomConstraint" destination="yIi-w4-0f0" id="taD-Mt-ASE"/>
+                        <outlet property="refreshView" destination="kfq-0o-AoA" id="Fet-Oo-DJS"/>
+                        <outlet property="tableView" destination="KkW-rk-nFD" id="tCO-G5-3bJ"/>
+                        <outlet property="voiceTipView" destination="1vM-VB-tRe" id="QLc-ux-SlQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H5R-BD-2ET" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="kfq-0o-AoA">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" tag="10" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="SV6-gB-QSI">
+                            <rect key="frame" x="150" y="10" width="20" height="20"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="SV6-gB-QSI" firstAttribute="centerY" secondItem="kfq-0o-AoA" secondAttribute="centerY" id="Jsq-US-AFr"/>
+                        <constraint firstItem="SV6-gB-QSI" firstAttribute="centerX" secondItem="kfq-0o-AoA" secondAttribute="centerX" id="Jta-nl-5aN"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" id="1vM-VB-tRe">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bottomTipsBg" translatesAutoresizingMaskIntoConstraints="NO" id="tMo-ZK-l4S">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bottomTipsIcon_Voice" translatesAutoresizingMaskIntoConstraints="NO" id="LBL-2F-0Rq">
+                            <rect key="frame" x="12" y="6" width="38" height="34"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="34" id="EVN-af-MQj"/>
+                                <constraint firstAttribute="width" constant="38" id="Nel-Vq-fbf"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已从听筒切换回扬声器播放" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z7W-zy-MXw">
+                            <rect key="frame" x="62" y="12" width="215" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="2bM-Ey-uhT"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pqP-5U-LWK">
+                            <rect key="frame" x="285" y="10" width="26" height="26"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="26" id="FfG-kD-lsO"/>
+                                <constraint firstAttribute="height" constant="26" id="ZxY-gb-3bh"/>
+                            </constraints>
+                            <state key="normal" image="bottomTipsClose"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="pqP-5U-LWK" secondAttribute="trailing" constant="9" id="3hg-9g-JDq"/>
+                        <constraint firstItem="tMo-ZK-l4S" firstAttribute="leading" secondItem="1vM-VB-tRe" secondAttribute="leading" id="C0Z-31-fiy"/>
+                        <constraint firstItem="LBL-2F-0Rq" firstAttribute="centerY" secondItem="1vM-VB-tRe" secondAttribute="centerY" id="Jog-dc-npq"/>
+                        <constraint firstItem="z7W-zy-MXw" firstAttribute="leading" secondItem="LBL-2F-0Rq" secondAttribute="trailing" constant="12" id="Kwt-ah-d8l"/>
+                        <constraint firstAttribute="trailing" secondItem="tMo-ZK-l4S" secondAttribute="trailing" id="PBG-Wi-Tyf"/>
+                        <constraint firstItem="tMo-ZK-l4S" firstAttribute="top" secondItem="1vM-VB-tRe" secondAttribute="top" id="S97-I6-ReV"/>
+                        <constraint firstItem="LBL-2F-0Rq" firstAttribute="leading" secondItem="1vM-VB-tRe" secondAttribute="leading" constant="12" id="SjI-oh-Paz"/>
+                        <constraint firstItem="pqP-5U-LWK" firstAttribute="leading" secondItem="z7W-zy-MXw" secondAttribute="trailing" constant="8" id="Vn0-xS-Tqe"/>
+                        <constraint firstItem="z7W-zy-MXw" firstAttribute="centerY" secondItem="1vM-VB-tRe" secondAttribute="centerY" id="dIv-P1-qpR"/>
+                        <constraint firstItem="pqP-5U-LWK" firstAttribute="centerY" secondItem="1vM-VB-tRe" secondAttribute="centerY" id="ikE-8D-P7Q"/>
+                        <constraint firstAttribute="bottom" secondItem="tMo-ZK-l4S" secondAttribute="bottom" id="zE1-vi-isT"/>
+                    </constraints>
+                </view>
+            </objects>
+            <point key="canvasLocation" x="-970" y="-248"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="bottomTipsBg" width="50" height="46"/>
+        <image name="bottomTipsClose" width="26" height="26"/>
+        <image name="bottomTipsIcon_Voice" width="38" height="34"/>
+    </resources>
+</document>

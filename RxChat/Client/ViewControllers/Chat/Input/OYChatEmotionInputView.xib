@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="OYChatEmotionInputView" customModule="WeChatDemo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="217"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="zAY-uy-0SQ">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="170"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="170" id="p0s-Ln-EIM"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RiD-Fk-mB5">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eTR-zb-hw8">
+                    <rect key="frame" x="0.0" y="180" width="45" height="37"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="45" id="TBO-zp-g4r"/>
+                        <constraint firstAttribute="height" constant="37" id="iFv-UH-5r5"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="Button" image="EmotionsBagAdd"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="04P-22-Xtc">
+                    <rect key="frame" x="320" y="180" width="55" height="37"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="37" id="DtY-Q9-uAi"/>
+                        <constraint firstAttribute="width" constant="55" id="yu4-VQ-cNy"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="发送" backgroundImage="EmotionsSendBtnBlue"/>
+                    <state key="disabled" backgroundImage="EmotionsSendBtnGrey">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="highlighted" backgroundImage="EmotionsSendBtnBlueHL"/>
+                </button>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hNc-Te-Uqc">
+                    <rect key="frame" x="45" y="180" width="275" height="37"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="37" id="Me6-8s-bxf"/>
+                    </constraints>
+                </scrollView>
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="3fG-Ot-pru">
+                    <rect key="frame" x="0.0" y="157" width="375" height="37"/>
+                    <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="currentPageIndicatorTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                </pageControl>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="04P-22-Xtc" secondAttribute="trailing" id="70x-c7-l7c"/>
+                <constraint firstAttribute="trailing" secondItem="zAY-uy-0SQ" secondAttribute="trailing" id="BtK-O6-N4v"/>
+                <constraint firstItem="04P-22-Xtc" firstAttribute="leading" secondItem="hNc-Te-Uqc" secondAttribute="trailing" id="H6J-lK-5dx"/>
+                <constraint firstAttribute="bottom" secondItem="04P-22-Xtc" secondAttribute="bottom" id="LdR-w2-F4J"/>
+                <constraint firstItem="eTR-zb-hw8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="O6b-Kn-GcP"/>
+                <constraint firstAttribute="bottom" secondItem="hNc-Te-Uqc" secondAttribute="bottom" id="a3s-8Y-QaC"/>
+                <constraint firstItem="zAY-uy-0SQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="dbf-uV-FOd"/>
+                <constraint firstAttribute="bottom" secondItem="eTR-zb-hw8" secondAttribute="bottom" id="g0T-lz-hQz"/>
+                <constraint firstItem="zAY-uy-0SQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="gtw-sa-lx6"/>
+                <constraint firstItem="3fG-Ot-pru" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="lRn-cl-05g"/>
+                <constraint firstItem="3fG-Ot-pru" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="157" id="miK-29-bfg"/>
+                <constraint firstAttribute="trailing" secondItem="3fG-Ot-pru" secondAttribute="trailing" id="uLE-dA-HpM"/>
+                <constraint firstItem="hNc-Te-Uqc" firstAttribute="leading" secondItem="eTR-zb-hw8" secondAttribute="trailing" id="zLe-qd-5B8"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="bottomScrollView" destination="hNc-Te-Uqc" id="MpQ-LS-S5x"/>
+                <outlet property="collectionView" destination="zAY-uy-0SQ" id="FgK-gJ-kxd"/>
+                <outlet property="pageControl" destination="3fG-Ot-pru" id="R8L-Qu-5bC"/>
+                <outlet property="plusButton" destination="eTR-zb-hw8" id="Yti-Hk-DPU"/>
+                <outlet property="sendButton" destination="04P-22-Xtc" id="7JO-Rl-SN9"/>
+            </connections>
+            <point key="canvasLocation" x="-482" y="-93"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="EmotionsBagAdd" width="25" height="25"/>
+        <image name="EmotionsSendBtnBlue" width="70" height="37"/>
+        <image name="EmotionsSendBtnBlueHL" width="70" height="37"/>
+        <image name="EmotionsSendBtnGrey" width="70" height="37"/>
+    </resources>
+</document>

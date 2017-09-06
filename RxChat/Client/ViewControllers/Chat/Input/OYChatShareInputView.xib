@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="aec-c1-XQx" customClass="OYChatShareInputView" customModule="WeChatDemo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="217"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="E77-YS-l8N">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="192"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="192" id="JI5-RB-kp9"/>
+                    </constraints>
+                    <collectionViewLayout key="collectionViewLayout" id="8O4-3i-l55" customClass="OYCollectionViewLayout" customModule="WeChatDemo" customModuleProvider="target"/>
+                </collectionView>
+                <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" defersCurrentPageDisplay="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Uwq-Q9-jOp">
+                    <rect key="frame" x="0.0" y="192" width="375" height="37"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="37" id="1m0-0x-6VJ"/>
+                    </constraints>
+                    <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="currentPageIndicatorTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                </pageControl>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="E77-YS-l8N" firstAttribute="top" secondItem="aec-c1-XQx" secondAttribute="top" id="157-wc-Qyg"/>
+                <constraint firstItem="Uwq-Q9-jOp" firstAttribute="leading" secondItem="aec-c1-XQx" secondAttribute="leading" id="Cgw-wg-xKT"/>
+                <constraint firstItem="Uwq-Q9-jOp" firstAttribute="top" secondItem="E77-YS-l8N" secondAttribute="bottom" id="Q10-vG-t9N"/>
+                <constraint firstAttribute="trailing" secondItem="Uwq-Q9-jOp" secondAttribute="trailing" id="QPF-nL-UOY"/>
+                <constraint firstItem="E77-YS-l8N" firstAttribute="leading" secondItem="aec-c1-XQx" secondAttribute="leading" id="qeZ-9F-60W"/>
+                <constraint firstAttribute="trailing" secondItem="E77-YS-l8N" secondAttribute="trailing" id="uHr-ps-oVl"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="collectionView" destination="E77-YS-l8N" id="IUO-dT-GlT"/>
+                <outlet property="pageControl" destination="Uwq-Q9-jOp" id="4LF-cK-JlB"/>
+            </connections>
+            <point key="canvasLocation" x="-431" y="-86"/>
+        </view>
+    </objects>
+</document>

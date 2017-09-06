@@ -1,0 +1,57 @@
+PODS:
+  - Alamofire (4.5.0)
+  - HandyJSON (1.7.1)
+  - Kingfisher (3.10.2)
+  - Moya/Core (8.0.5):
+    - Alamofire (~> 4.1)
+    - Result (~> 3.0)
+  - Moya/RxSwift (8.0.5):
+    - Moya/Core
+    - RxSwift (~> 3.0)
+  - ReactorKit (0.4.5):
+    - RxSwift (>= 3.0.0)
+  - Result (3.2.3)
+  - RxCocoa (3.5.0):
+    - RxSwift (~> 3.4)
+  - RxDataSources (1.0.4):
+    - RxCocoa (~> 3.0)
+    - RxSwift (~> 3.0)
+  - RxSwift (3.5.0)
+  - RxViewController (0.1.0):
+    - RxCocoa (>= 3.0.0)
+    - RxSwift (>= 3.0.0)
+  - SnapKit (3.2.0)
+  - SQLite.swift (0.11.3):
+    - SQLite.swift/standard (= 0.11.3)
+  - SQLite.swift/standard (0.11.3)
+
+DEPENDENCIES:
+  - Alamofire
+  - HandyJSON
+  - Kingfisher
+  - Moya/RxSwift
+  - ReactorKit
+  - RxCocoa (~> 3.0)
+  - RxDataSources (~> 1.0)
+  - RxSwift (~> 3.0)
+  - RxViewController
+  - SnapKit (~> 3.2.0)
+  - SQLite.swift (~> 0.11.3)
+
+SPEC CHECKSUMS:
+  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  HandyJSON: 54b6ce942795f7b2e61b82fe73cf25d9f139d125
+  Kingfisher: 7297492bf8cec9b2e2dee3519f2219948580d98e
+  Moya: c37eec09a098ba9991b5a963b291fc5704bdb9ef
+  ReactorKit: 545c457c350da37ba922350692390c78e7062216
+  Result: 128640a6347e8d2ae48b142556739a2d13f90ce6
+  RxCocoa: a0a09f45d0e5b48ecb6a4a7b4b4c89c88d3f633f
+  RxDataSources: b3389acc5fe2eefb8fcd81a2b76a876ad08bc82a
+  RxSwift: 18ee9d78b45edb3b0b7e79916b47a116e6dbc842
+  RxViewController: 45aada3de70642e419b13b100ba395287859361b
+  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
+  SQLite.swift: 99b36c22084427f0abbeb957556ce1528cf10bb3
+
+PODFILE CHECKSUM: 5bf3ac8858329a138f333f1d3e4cfbcc7c3ec973
+
+COCOAPODS: 1.2.1
