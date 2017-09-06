@@ -31,38 +31,59 @@ let testList = [
 class ChatViewModel: ViewModelType {
     
     struct Input {
-        var refreshCommand: ControlEvent<Void>
-        var startMessageId = Variable<String>("") // 查询id不存在则从表最底部往上查询limit条记录
-//        var sendTextMsg: Driver<String>
-//        var sendGifMsg: Driver<EmotionItem>
-        init(refresh: ControlEvent<Void>) {
-            refreshCommand = refresh
+//        var refreshCommand: ControlEvent<Void>
+//        var startMessageId = Variable<String>("") // 查询id不存在则从表最底部往上查询limit条记录
+        var sendTextMsg: Observable<String>
+
+        init(sendText: Observable<String>) {
+//            refreshCommand = refresh
+            sendTextMsg = sendText
         }
     }
     
     
     // MARK: output
     struct Output {
+        /** 界面消息列表数据*/
         var list: Driver<[ChatBaseCellViewModel]>
-        let refreshTrigger: Driver<Bool>
-        let sendMsgSubject = PublishSubject<ChatItem>()
+        /** 界面滚动位置*/
+//        var scrollOfIndex = Driver<IndexPath>(0)
+        
+        /** 刷新*/
+//        let refreshTrigger: Driver<Bool>
+        /** 消息发送*/
+        let sendMsgTrigger: Driver<Int>
+        
     }
     
     func transform(_ input: Input) -> Output {
-//        let output = Output.init(chatSection: _chatList.asDriver())
         
-        let refreshTrigger = input.refreshCommand
-            .flatMap({input.startMessageId.asObservable()})
-            .flatMapLatest({_ -> Observable<Bool> in 
-                /** 获取下拉刷新数据加载到output.section中*/
-                let viewModels = testList.map({ (item) -> ChatBaseCellViewModel in
-                    return ChatBaseCellViewModel.createCellViewModel(messageItem: item)
-                })
-                self._chatList.value += viewModels
-                return Observable.of(true)
-            })
+//        let refreshTrigger = input.refreshCommand
+//            .flatMap({input.startMessageId.asObservable()})
+//            .flatMapLatest({_ -> Observable<Bool> in 
+//                /** 获取下拉刷新数据加载到output.section中*/
+//                let viewModels = testList.map({ (item) -> ChatBaseCellViewModel in
+//                    return ChatBaseCellViewModel.createCellViewModel(messageItem: item)
+//                })
+//                self._chatList.value += viewModels
+//                return Observable.of(true)
+//            })
         
-        return Output(list: _chatList.asDriver(), refreshTrigger: refreshTrigger.asDriver(onErrorJustReturn: true))
+        let sendMsgTrigger = input.sendTextMsg.flatMap({
+            ChatService.shared.sendText(text: $0)
+        })
+        .flatMap({ (element) -> Observable<Int> in
+          let value = ChatBaseCellViewModel.createCellViewModel(messageItem: element)
+            self._chatList.value.append(value)
+            return Observable.create { observer in
+                observer.on(.next(self._chatList.value.count))
+                observer.on(.completed)
+                return Disposables.create()
+            }
+        })
+        .asDriver(onErrorJustReturn: (0))
+        
+        return Output(list: _chatList.asDriver(), sendMsgTrigger: sendMsgTrigger)
     }
     
     

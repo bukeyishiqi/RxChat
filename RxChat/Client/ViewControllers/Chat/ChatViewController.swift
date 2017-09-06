@@ -25,9 +25,6 @@ class ChatViewController: UIViewController {
 
     @IBOutlet weak var chatInputViewBottomConstraint: NSLayoutConstraint!
     
-    lazy var refreshControl = UIRefreshControl()
-    
-    
     var viewModel = ChatViewModel.init(provider: ServiceProvider())
     
     override func viewDidLoad() {
@@ -35,9 +32,7 @@ class ChatViewController: UIViewController {
         tableView.do {
             $0.estimatedRowHeight = 45
             $0.rowHeight = UITableViewAutomaticDimension
-            $0.refreshControl = refreshControl
         }
-        tableView.addSubview(refreshControl)
         observerViewModel()
         observerInputView()
     }
@@ -45,7 +40,7 @@ class ChatViewController: UIViewController {
     private func observerViewModel() {
         let refreshEvent = self.tableView.refreshControl?.rx.controlEvent(.allEvents)
         
-        let input = ChatViewModel.Input.init(refresh: refreshEvent!)
+        let input = ChatViewModel.Input.init(sendText: chatInputView.rx.didSendTextMsg)
         
         let output = viewModel.transform(input)
         
@@ -61,9 +56,11 @@ class ChatViewController: UIViewController {
             return cell ?? UITableViewCell()
             }.disposed(by: disposeBag)
         
-        output.refreshTrigger.drive(isRefreshBinding).disposed(by: disposeBag)
-
-
+//        output.refreshTrigger.drive(isRefreshBinding).disposed(by: disposeBag)
+//        output.scrollOfIndex.drive(self.tableView.rx.scrollIndex).disposed(by: disposeBag)
+        
+        output.sendMsgTrigger.drive(self.tableView.rx.scrollIndex).disposed(by: disposeBag)
+        
     }
     
     private func observerInputView() {
@@ -99,15 +96,15 @@ class ChatViewController: UIViewController {
             }).addDisposableTo(disposeBag)
     }
    
-    var isRefreshBinding: UIBindingObserver<ChatViewController, Bool> {
-        return UIBindingObserver.init(UIElement: self, binding: {(vc, isRefresh) in
-            if isRefresh {
-                vc.refreshControl.endRefreshing()
-            } else {
-                vc.refreshControl.beginRefreshing()
-            }
-        })
-    }
+//    var isRefreshBinding: UIBindingObserver<ChatViewController, Bool> {
+//        return UIBindingObserver.init(UIElement: self, binding: {(vc, isRefresh) in
+//            if isRefresh {
+//                vc.refreshControl.endRefreshing()
+//            } else {
+//                vc.refreshControl.beginRefreshing()
+//            }
+//        })
+//    }
     
 }
 
@@ -131,8 +128,13 @@ extension ChatViewController {
 }
 
 
-extension Reactive where Base: ChatViewController {
-    
+extension Reactive where Base: UITableView {
+    var scrollIndex: UIBindingObserver<Base, Int> {
+        return UIBindingObserver.init(UIElement: base, binding: {(tableView, index) in
+            let indexPath = IndexPath.init(row: index-1, section: 0)
+            tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        })
+    }
 }
 
 
