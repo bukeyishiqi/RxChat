@@ -24,12 +24,24 @@ class ChatService {
     }
     
     /** 发送消息*/
-    func sendText(text: String) -> Observable<ChatItem> {
-        /** 创建item*/
-        let item = ChatItemFactory.createChatTextItem(text: text, userId: "222", userName: "陈琪")
+    func send(_ text: String?  = nil, _ gif: String?  = nil, _ image: String? = nil) -> Observable<ChatItem> {
+        let sendItem: ChatItem?
+        if let sendText = text {
+            /** 创建item*/
+            sendItem = ChatItemFactory.createChatTextItem(text: sendText, userId: "222", userName: "陈琪")
+        } else if let sendGif = gif {
+            sendItem = ChatItemFactory.createChatTextItem(text: sendGif, userId: "222", userName: "陈琪")
+        } else if let sendImage = image {
+            sendItem = ChatItemFactory.createChatTextItem(text: sendImage, userId: "222", userName: "陈琪")
+        } else {
+            sendItem = nil
+        }
+        
         /** 添加到消息发送队列*/
         
-        
+        guard let item = sendItem else {
+            return Observable.never()
+        }
         return Observable.just(item)
     }
 }

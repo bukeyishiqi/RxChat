@@ -54,11 +54,11 @@ extension Reactive where Base: OYChatInputView {
         }
     }
     
-    var didSendGifMsg: Observable<EmotionItem> {
+    var didSendGifMsg: Observable<String> {
         return (delegate as! OYChatInputViewDelegateProxy).didSendGifMsgSubject
                 .asObservable()
                 .filter {
-                    $0.codeId != nil && $0.imagePNG != nil && $0.imageGIF != nil
+                    $0.characters.count > 0
             }
     }
     

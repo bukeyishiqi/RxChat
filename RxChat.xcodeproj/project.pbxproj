@@ -63,6 +63,7 @@
 		8C71AA221F4E703800B76ED0 /* ConversationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C71AA211F4E703800B76ED0 /* ConversationViewModel.swift */; };
 		8C71AA251F4E707C00B76ED0 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C71AA241F4E707C00B76ED0 /* ChatViewModel.swift */; };
 		8C723D711F0CDC0B00452C35 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C723D701F0CDC0B00452C35 /* BaseViewController.swift */; };
+		8C76DD931F613F61003D4B27 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C76DD921F613F61003D4B27 /* UIView+Ext.swift */; };
 		8C7EFAA41F4C1C59003E228D /* OYChatInputView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7EFAA31F4C1C59003E228D /* OYChatInputView+Rx.swift */; };
 		8C805B051F00C53800279C0C /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C805B041F00C53800279C0C /* MainTabBarController.swift */; };
 		8C805B091F0106A500279C0C /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C805B081F0106A500279C0C /* Color+Extension.swift */; };
@@ -143,6 +144,7 @@
 		8C71AA211F4E703800B76ED0 /* ConversationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewModel.swift; sourceTree = "<group>"; };
 		8C71AA241F4E707C00B76ED0 /* ChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		8C723D701F0CDC0B00452C35 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		8C76DD921F613F61003D4B27 /* UIView+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		8C7EFAA31F4C1C59003E228D /* OYChatInputView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OYChatInputView+Rx.swift"; sourceTree = "<group>"; };
 		8C805B041F00C53800279C0C /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		8C805B081F0106A500279C0C /* Color+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Color+Extension.swift"; path = "../Color+Extension.swift"; sourceTree = "<group>"; };
@@ -513,6 +515,7 @@
 			children = (
 				8C805B081F0106A500279C0C /* Color+Extension.swift */,
 				8C62036C1F56A8DB0030AEC7 /* UIImage+Ext.swift */,
+				8C76DD921F613F61003D4B27 /* UIView+Ext.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -756,6 +759,7 @@
 				8C5ADFAC1F024F4B00332915 /* RequestSet.swift in Sources */,
 				8CD30C6F1F21DDBE00E29461 /* ConversationModel.swift in Sources */,
 				8C8B4CDA1F381A130096252B /* OYChatEmotionInputViewModel.swift in Sources */,
+				8C76DD931F613F61003D4B27 /* UIView+Ext.swift in Sources */,
 				651FC42F1F3B11DF00097F3B /* OYChatShareDelegate.swift in Sources */,
 				8C6DE00C1F03A02200543C5D /* Helpers.swift in Sources */,
 				8C6DE0041F039F8400543C5D /* DBEngine.swift in Sources */,

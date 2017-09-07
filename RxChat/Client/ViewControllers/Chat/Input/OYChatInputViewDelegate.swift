@@ -86,7 +86,7 @@ class OYChatInputViewDelegateProxy: DelegateProxy, ChatInputDelegate, DelegatePr
     
     lazy var didUpdateInfoSubject = PublishSubject<KeyboardShowHideInfo>()
     lazy var didSendTextMsgSubject = PublishSubject<String>()
-    lazy var didSendGifMsgSubject = PublishSubject<EmotionItem>()
+    lazy var didSendGifMsgSubject = PublishSubject<String>()
     lazy var didSelectShareTagSubject = PublishSubject<Int>()
     
     
@@ -115,7 +115,7 @@ class OYChatInputViewDelegateProxy: DelegateProxy, ChatInputDelegate, DelegatePr
     }
     
     func sendGifMessage(item: EmotionItem) {
-        didSendGifMsgSubject.onNext(item)
+        didSendGifMsgSubject.onNext(item.imageGIF ?? "")
     }
     
     func didSelectShareTag(tag: Int) {

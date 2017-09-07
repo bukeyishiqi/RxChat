@@ -19,10 +19,9 @@ class ChatBaseCell: UITableViewCell {
         $0.backgroundColor = UIColor.red
     }
     
-    lazy var bubbleImage = UIImageView().then {
+    lazy var bubbleView = UIImageView().then {
         $0.contentMode = .scaleToFill
         $0.backgroundColor = UIColor.yellow
-        $0.image = UIImage.init(named:"ReceiverTextNodeBkg")?.resizableImage()
     }
     
     var disposeBag: DisposeBag?
@@ -34,16 +33,11 @@ class ChatBaseCell: UITableViewCell {
             guard let viewModel = viewModel else {
                 return
             }
+            /** 设置头像*/
             viewModel.headUrl.distinctUntilChanged()
                 .subscribe(onNext: {[weak self] urlStr in
                     self?.avatarImage.image = UIImage.init(named: urlStr)
                 }).disposed(by: disposeBag)
-            
-            viewModel.isFromMe.asObservable().subscribe(onNext: { [weak self] fromMe in
-//                self?.updateConstraints(isFromMe: fromMe)
-                self?.layoutIfNeeded()
-            }).disposed(by: disposeBag)
-            
             self.disposeBag = disposeBag
         }
     }
@@ -51,14 +45,14 @@ class ChatBaseCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.contentView.addSubview(avatarImage)
-        self.contentView.addSubview(bubbleImage)
+        self.addSubview(avatarImage)
+        self.addSubview(bubbleView)
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.contentView.addSubview(avatarImage)
-        self.contentView.addSubview(bubbleImage)
+        self.contentView.addSubview(bubbleView)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -72,35 +66,46 @@ class ChatBaseCell: UITableViewCell {
         viewModel = nil
     }
     
-    override func updateConstraints() {
-        super.updateConstraints()
-        self.updateConstraints(isFromMe: false)
-    }
+//    override func updateConstraints() {
+//        super.updateConstraints()
+//        self.updateConstraints(isFromMe: false)
+//    }
 }
 
 extension ChatBaseCell {
-    fileprivate func updateConstraints(isFromMe: Bool) {
-        avatarImage.snp.makeConstraints({ make in
-            make.width.height.equalTo(avatar_width_height)
-            make.top.equalTo(self.contentView.snp.top)
-            if isFromMe {
-                make.right.equalTo(self.contentView).offset(-avatar_left)
-            } else {
-                make.left.equalTo(self.contentView).offset(avatar_left)
-            }
-        })
+//    fileprivate func updateConstraints(isFromMe: Bool) {
+//        avatarImage.snp.makeConstraints({ make in
+//            make.width.height.equalTo(avatar_width_height)
+//            make.top.equalTo(self.contentView.snp.top)
+//            if isFromMe {
+//                make.right.equalTo(self.contentView).offset(-avatar_left)
+//            } else {
+//                make.left.equalTo(self.contentView).offset(avatar_left)
+//            }
+//        })
+//        
+//        bubbleImage.snp.makeConstraints( { make in
+//            make.top.equalTo(avatarImage)
+//            make.bottom.equalTo(self.contentView.snp.bottom)
+//            if isFromMe {
+//                make.right.equalTo(avatarImage.snp.left).offset(-bubble_left)
+//            } else {
+//                make.left.equalTo(avatarImage.snp.right).offset(bubble_left)
+//            }
+//            make.width.lessThanOrEqualTo(bubble_lessThan_width)
+//            make.width.greaterThanOrEqualTo(bubble_greaterThan_width)
+//        })
+//    }
+    
+    // MARK:- 获取cell的高度
+    func getCellHeight() -> CGFloat {
+        self.layoutSubviews()
         
-        bubbleImage.snp.makeConstraints( { make in
-            make.top.equalTo(avatarImage)
-            make.bottom.equalTo(self.contentView.snp.bottom)
-            if isFromMe {
-                make.right.equalTo(avatarImage.snp.left).offset(-bubble_left)
-            } else {
-                make.left.equalTo(avatarImage.snp.right).offset(bubble_left)
-            }
-            make.width.lessThanOrEqualTo(bubble_lessThan_width)
-            make.width.greaterThanOrEqualTo(bubble_greaterThan_width)
-        })
+        if avatarImage.height > bubbleView.height {
+            return avatarImage.height + 10.0
+        } else {
+            return bubbleView.height + 10.0
+        }
     }
 }
 

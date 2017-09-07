@@ -13,12 +13,15 @@ import RxCocoa
 
 class ChatBaseCellViewModel {
     
+    var cellHeight: CGFloat = 0
+    
+    // MARK: output
     var headUrl: Observable<String>
     var isFromMe: Observable<Bool>
     
     fileprivate var item: ChatItem
     
-    required init(_ messageItem: ChatItem) {
+    internal required init(_ messageItem: ChatItem) {
         item = messageItem
         isFromMe = Observable.just(messageItem.msgDesType).map {
             switch $0 {
@@ -42,13 +45,13 @@ class ChatBaseCellViewModel {
 // MARK: TextViewModel
 final class ChatTextViewModel: ChatBaseCellViewModel {
 
-    var rxTextMsg: Observable<String>
+    var rxTextMsg: Driver<String>
     
     required init(_ messageItem: ChatItem) {
       
         rxTextMsg = Observable.just(messageItem.msgBodyType.storeValue).filter {
             $0.characters.count > 0
-        }
+        }.asDriver(onErrorJustReturn: "")
         super.init(messageItem)
     }
 }

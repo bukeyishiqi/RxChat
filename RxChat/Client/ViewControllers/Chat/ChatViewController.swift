@@ -9,9 +9,10 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxDataSources
 import RxViewController
 
-class ChatViewController: UIViewController {
+class ChatViewController: UIViewController,UITableViewDelegate {
     
     let disposeBag = DisposeBag()
 
@@ -25,6 +26,9 @@ class ChatViewController: UIViewController {
 
     @IBOutlet weak var chatInputViewBottomConstraint: NSLayoutConstraint!
     
+    let dataSource = RxTableViewSectionedReloadDataSource<ChatSectionModel>()
+    
+    
     var viewModel = ChatViewModel.init(provider: ServiceProvider())
     
     override func viewDidLoad() {
@@ -36,31 +40,51 @@ class ChatViewController: UIViewController {
         observerViewModel()
         observerInputView()
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
     private func observerViewModel() {
-        let refreshEvent = self.tableView.refreshControl?.rx.controlEvent(.allEvents)
         
-        let input = ChatViewModel.Input.init(sendText: chatInputView.rx.didSendTextMsg)
-        
+        let input = ChatViewModel.Input.init(sendText: chatInputView.rx.didSendTextMsg, sendGif: chatInputView.rx.didSendGifMsg)
         let output = viewModel.transform(input)
         
-        output.list.asDriver().drive(tableView.rx.items) { (tableView, row, element) in
+        tableView.rx.setDelegate(self).disposed(by: disposeBag)
+        
+        dataSource.configureCell = { (_, tv, indexPath, element) in
             let identifier = element.description
-            var cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? ChatBaseCell
+            var cell = tv.dequeueReusableCell(withIdentifier: identifier) as? ChatBaseCell
+            
             if cell == nil {
-                tableView.register(NSClassFromString(identifier), forCellReuseIdentifier: identifier)
-                cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? ChatBaseCell
+                self.tableView.register(NSClassFromString(identifier), forCellReuseIdentifier: identifier)
+                cell = self.tableView.dequeueReusableCell(withIdentifier: identifier) as? ChatBaseCell
             }
             cell?.viewModel = element
-            cell?.updateConstraintsIfNeeded()
             return cell ?? UITableViewCell()
-            }.disposed(by: disposeBag)
+        }
+        output.list.drive(tableView.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
         
-//        output.refreshTrigger.drive(isRefreshBinding).disposed(by: disposeBag)
-//        output.scrollOfIndex.drive(self.tableView.rx.scrollIndex).disposed(by: disposeBag)
-        
-        output.sendMsgTrigger.drive(self.tableView.rx.scrollIndex).disposed(by: disposeBag)
-        
+//        output.list.drive(tableView.rx.items) { (tableView, row, element) in
+//            let identifier = element.description
+//            var cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? ChatBaseCell
+//            if cell == nil {
+//                tableView.register(NSClassFromString(identifier), forCellReuseIdentifier: identifier)
+//                cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? ChatBaseCell
+//            }
+//            cell?.viewModel = element
+//            cell?.updateConstraintsIfNeeded()
+//            return cell ?? UITableViewCell()
+//            }.disposed(by: disposeBag)
+    
+        output.didSendMsg?.drive().disposed(by: disposeBag)
+        output.scrollPosition.observeOn(MainScheduler.instance).subscribe(onNext: {[weak self] position in
+            /** 调整界面滚动位置*/
+            self?.scrollToPosition(position: position)
+        }).disposed(by: disposeBag)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let viewModel = dataSource[indexPath]
+        return viewModel.cellHeight
     }
     
     private func observerInputView() {
@@ -71,11 +95,11 @@ class ChatViewController: UIViewController {
                 self?.updateKeyboard(keyboardShowHideInfo: info)
         }).addDisposableTo(disposeBag)
         
-        chatInputView.rx.didSendTextMsg
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] sendMsg in
-                print("dddd:", sendMsg)
-        }).addDisposableTo(disposeBag)
+//        chatInputView.rx.didSendTextMsg
+//            .observeOn(MainScheduler.instance)
+//            .subscribe(onNext: { [weak self] sendMsg in
+//                print("dddd:", sendMsg)
+//        }).addDisposableTo(disposeBag)
         
         chatInputView.rx.didSendGifMsg
             .observeOn(MainScheduler.instance)
@@ -95,44 +119,49 @@ class ChatViewController: UIViewController {
                 print("add:")
             }).addDisposableTo(disposeBag)
     }
-   
-//    var isRefreshBinding: UIBindingObserver<ChatViewController, Bool> {
-//        return UIBindingObserver.init(UIElement: self, binding: {(vc, isRefresh) in
-//            if isRefresh {
-//                vc.refreshControl.endRefreshing()
-//            } else {
-//                vc.refreshControl.beginRefreshing()
-//            }
-//        })
-//    }
-    
 }
 
 
 extension ChatViewController {
    fileprivate  func updateKeyboard(keyboardShowHideInfo: KeyboardShowHideInfo) {
-        
         let constant = keyboardShowHideInfo.keyboardHeight
-        
-//        let needScrollToBottom = ((self.chatInputViewBottomConstraint.constant == 0) && (constant > 0))
-
         UIView.animate(withDuration: TimeInterval(keyboardShowHideInfo.duration), delay: 0, options: keyboardShowHideInfo.curve, animations: {
             self.chatInputViewBottomConstraint.constant = constant
             self.view.layoutIfNeeded()
-            
-            self.tableView.contentInset = UIEdgeInsetsMake(constant, 0, 0, 0)
-            self.tableView.scrollIndicatorInsets = self.tableView.contentInset
-            
+            self.scrollToBottom(animated: true)
         }, completion: nil)
+    }
+    
+    fileprivate func scrollToBottom(animated: Bool) {
+        let row = tableView.numberOfRows(inSection: 0) - 1
+        let indexPath = IndexPath.init(row: row, section: 0)
+        tableView.scrollToRow(at: indexPath, at: .bottom, animated: animated)
+    }
+    
+    fileprivate func scrollToPosition(position: ScorllPosition) {
+        switch position {
+        case .top:
+            let indexPath = IndexPath.init(row: 0, section: 0)
+            tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            break
+        case let .middle(index: index):
+            let indexPath = IndexPath.init(row: index, section: 0)
+            tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            break
+        case .bottom:
+            scrollToBottom(animated: true)
+            break
+        }
     }
 }
 
 
 extension Reactive where Base: UITableView {
-    var scrollIndex: UIBindingObserver<Base, Int> {
-        return UIBindingObserver.init(UIElement: base, binding: {(tableView, index) in
-            let indexPath = IndexPath.init(row: index-1, section: 0)
-            tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+    var scrollToBottom: UIBindingObserver<Base, Bool> {
+        return UIBindingObserver.init(UIElement: base, binding: {(tableView, animated) in
+            let row = tableView.numberOfRows(inSection: 0) - 1
+            let indexPath = IndexPath.init(row: row, section: 0)
+            tableView.scrollToRow(at: indexPath, at: .bottom, animated: animated)
         })
     }
 }

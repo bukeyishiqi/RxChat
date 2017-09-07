@@ -21,7 +21,7 @@ final class ChatTextCell: ChatBaseCell {
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.contentView.addSubview(msgTextLabel)
+        bubbleView.addSubview(msgTextLabel)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -30,27 +30,73 @@ final class ChatTextCell: ChatBaseCell {
     
     override var viewModel: ChatBaseCellViewModel? {
         didSet {
-            guard let viewModel = viewModel as? ChatTextViewModel else {
-                return
-            }
-            viewModel.rxTextMsg
-                .asDriver(onErrorJustReturn: "text消息错误！")
-                .drive(msgTextLabel.rx.text)
-                .disposed(by: disposeBag!)
+            setViewModel()
         }
-    }
-    
-    override func updateConstraints() {
-        super.updateConstraints()
-        self.addConstraints()
     }
 }
 
 extension ChatTextCell {
-    fileprivate func addConstraints() {
-    
-        msgTextLabel.snp.makeConstraints( { make in
-            make.edges.equalTo(bubbleImage).inset(UIEdgeInsetsMake(10, 15, 15, 12))
-        })
+    fileprivate func setViewModel() {
+        guard let viewModel = viewModel as? ChatTextViewModel else {
+            return
+        }
+        viewModel.rxTextMsg
+            .drive(msgTextLabel.rx.text)
+            .disposed(by: disposeBag!)
+
+        viewModel.isFromMe.subscribe(onNext: {
+            self.reUpdateConstraints(isFromMe: $0)
+        }).disposed(by: disposeBag!)
+    }
+}
+
+extension ChatTextCell {
+    fileprivate func reUpdateConstraints(isFromMe: Bool) {
+        let image = isFromMe ? SenderTextNodeBkg : ReceiverTextNodeBkg
+        bubbleView.image = image
+        
+        let contentSize = msgTextLabel.sizeThatFits(CGSize(width: bubble_lessThan_width, height: .greatestFiniteMagnitude))
+        
+        // 重新布局
+        avatarImage.snp.remakeConstraints { (make) in
+            make.width.height.equalTo(avatar_width_height)
+            make.top.equalTo(self.snp.top)
+        }
+        bubbleView.snp.remakeConstraints { (make) in
+            make.top.equalTo(self.snp.top).offset(-bubble_top)
+            make.bottom.equalTo(msgTextLabel.snp.bottom).offset(bubble_bottom)
+        }
+        msgTextLabel.snp.remakeConstraints { (make) in
+            make.height.equalTo(contentSize.height)
+            make.width.equalTo(contentSize.width)
+        }
+        
+        if isFromMe {
+            avatarImage.snp.makeConstraints { (make) in
+                make.right.equalTo(self.snp.right).offset(-avatar_left)
+            }
+            bubbleView.snp.makeConstraints { (make) in
+                make.right.equalTo(avatarImage.snp.left).offset(-2)
+                make.left.equalTo(msgTextLabel.snp.left).offset(-20)
+            }
+            msgTextLabel.snp.makeConstraints { (make) in
+                make.top.equalTo(bubbleView.snp.top).offset(12)
+                make.right.equalTo(bubbleView.snp.right).offset(-17)
+            }
+
+        } else {
+            avatarImage.snp.makeConstraints { (make) in
+                make.left.equalTo(self.snp.left).offset(10)
+            }
+            bubbleView.snp.makeConstraints { (make) in
+                make.left.equalTo(avatarImage.snp.right).offset(2)
+                make.right.equalTo(msgTextLabel.snp.right).offset(20)
+            }
+            msgTextLabel.snp.makeConstraints { (make) in
+                make.top.equalTo(bubbleView.snp.top).offset(12)
+                make.left.equalTo(bubbleView.snp.left).offset(17)
+            }
+        }
+        viewModel?.cellHeight = getCellHeight()
     }
 }
