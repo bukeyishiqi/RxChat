@@ -76,27 +76,28 @@ extension ChatTextCell {
                 make.right.equalTo(self.snp.right).offset(-avatar_left)
             }
             bubbleView.snp.makeConstraints { (make) in
-                make.right.equalTo(avatarImage.snp.left).offset(-2)
-                make.left.equalTo(msgTextLabel.snp.left).offset(-20)
+                make.right.equalTo(avatarImage.snp.left).offset(-bubble_left)
+                make.left.equalTo(msgTextLabel.snp.left).offset(-sub_margin * 2)
             }
             msgTextLabel.snp.makeConstraints { (make) in
-                make.top.equalTo(bubbleView.snp.top).offset(12)
+                make.top.equalTo(bubbleView.snp.top).offset(sub_margin)
                 make.right.equalTo(bubbleView.snp.right).offset(-17)
             }
 
         } else {
             avatarImage.snp.makeConstraints { (make) in
-                make.left.equalTo(self.snp.left).offset(10)
+                make.left.equalTo(self.snp.left).offset(sub_margin)
             }
             bubbleView.snp.makeConstraints { (make) in
-                make.left.equalTo(avatarImage.snp.right).offset(2)
-                make.right.equalTo(msgTextLabel.snp.right).offset(20)
+                make.left.equalTo(avatarImage.snp.right).offset(bubble_left)
+                make.right.equalTo(msgTextLabel.snp.right).offset(sub_margin * 2)
             }
             msgTextLabel.snp.makeConstraints { (make) in
-                make.top.equalTo(bubbleView.snp.top).offset(12)
+                make.top.equalTo(bubbleView.snp.top).offset(sub_margin)
                 make.left.equalTo(bubbleView.snp.left).offset(17)
             }
         }
+        
         viewModel?.cellHeight = getCellHeight()
     }
 }

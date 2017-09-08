@@ -21,7 +21,6 @@ class ChatBaseCell: UITableViewCell {
     
     lazy var bubbleView = UIImageView().then {
         $0.contentMode = .scaleToFill
-        $0.backgroundColor = UIColor.yellow
     }
     
     var disposeBag: DisposeBag?
@@ -43,10 +42,11 @@ class ChatBaseCell: UITableViewCell {
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.backgroundColor = kLLBackgroundColor_lightGray
         self.addSubview(avatarImage)
         self.addSubview(bubbleView)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -65,37 +65,9 @@ class ChatBaseCell: UITableViewCell {
         disposeBag = nil
         viewModel = nil
     }
-    
-//    override func updateConstraints() {
-//        super.updateConstraints()
-//        self.updateConstraints(isFromMe: false)
-//    }
 }
 
 extension ChatBaseCell {
-//    fileprivate func updateConstraints(isFromMe: Bool) {
-//        avatarImage.snp.makeConstraints({ make in
-//            make.width.height.equalTo(avatar_width_height)
-//            make.top.equalTo(self.contentView.snp.top)
-//            if isFromMe {
-//                make.right.equalTo(self.contentView).offset(-avatar_left)
-//            } else {
-//                make.left.equalTo(self.contentView).offset(avatar_left)
-//            }
-//        })
-//        
-//        bubbleImage.snp.makeConstraints( { make in
-//            make.top.equalTo(avatarImage)
-//            make.bottom.equalTo(self.contentView.snp.bottom)
-//            if isFromMe {
-//                make.right.equalTo(avatarImage.snp.left).offset(-bubble_left)
-//            } else {
-//                make.left.equalTo(avatarImage.snp.right).offset(bubble_left)
-//            }
-//            make.width.lessThanOrEqualTo(bubble_lessThan_width)
-//            make.width.greaterThanOrEqualTo(bubble_greaterThan_width)
-//        })
-//    }
     
     // MARK:- 获取cell的高度
     func getCellHeight() -> CGFloat {
@@ -104,7 +76,7 @@ extension ChatBaseCell {
         if avatarImage.height > bubbleView.height {
             return avatarImage.height + 10.0
         } else {
-            return bubbleView.height + 10.0
+            return bubbleView.height
         }
     }
 }

@@ -69,7 +69,7 @@
         <!--Conversation List Controller-->
         <scene sceneID="CFE-Bj-qpd">
             <objects>
-                <viewController id="VXe-9O-3E2" customClass="ConversationListController" customModule="WeChatDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="VXe-9O-3E2" customClass="ConversationListController" customModule="RxChat" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZKc-3K-WB5"/>
                         <viewControllerLayoutGuide type="bottom" id="BTx-SW-yjr"/>
@@ -87,7 +87,7 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ConversationListCell" rowHeight="60" id="8xa-Oq-jqv" customClass="ConversationListCell" customModule="WeChatDemo" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ConversationListCell" rowHeight="60" id="8xa-Oq-jqv" customClass="ConversationListCell" customModule="RxChat" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8xa-Oq-jqv" id="0rb-gO-478">
@@ -166,7 +166,7 @@
         <!--Main Tab Bar Controller-->
         <scene sceneID="bsu-cT-JCs">
             <objects>
-                <tabBarController id="fmI-aG-DWd" customClass="MainTabBarController" customModule="WeChatDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="fmI-aG-DWd" customClass="MainTabBarController" customModule="RxChat" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="gXd-eC-9NN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
