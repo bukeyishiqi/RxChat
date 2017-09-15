@@ -81,12 +81,12 @@ extension BasicPushOrPopEnable where Self: UIViewController {
 /**
  *  - 错误统一处理协议
  */
-protocol ErrorPopoverRenderer {
+protocol ErrorPopoverRender {
 
     func presentError(errorOptions: ErrorOptions)
 }
 
-extension ErrorPopoverRenderer where Self: UIViewController {
+extension ErrorPopoverRender where Self: UIViewController {
     func presentError(errorOptions: ErrorOptions = ErrorOptions()) {
         //在这里加默认实现，并提供ErrorView的默认参数。
         

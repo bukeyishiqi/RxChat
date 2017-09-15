@@ -31,6 +31,7 @@
 		65EC045F1F25A3CF0058190F /* BSResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EC045A1F25A3CF0058190F /* BSResult.swift */; };
 		65EC04681F25AB690058190F /* DBEngine+Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EC04661F25AB690058190F /* DBEngine+Chat.swift */; };
 		65EC04691F25AB690058190F /* DBEngine+Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EC04671F25AB690058190F /* DBEngine+Conversation.swift */; };
+		8C1F02D91F6A85CE00825312 /* RealmRunloopScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1F02D81F6A85CE00825312 /* RealmRunloopScheduler.swift */; };
 		8C5544A91EFD07CA00CD4472 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5544A81EFD07CA00CD4472 /* AppDelegate.swift */; };
 		8C5544AE1EFD07CA00CD4472 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C5544AC1EFD07CA00CD4472 /* Main.storyboard */; };
 		8C5544B01EFD07CA00CD4472 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C5544AF1EFD07CA00CD4472 /* Assets.xcassets */; };
@@ -44,8 +45,19 @@
 		8C5ADFAD1F024F4B00332915 /* Convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5ADFA11F024F4B00332915 /* Convert.swift */; };
 		8C5ADFAE1F024F4B00332915 /* DiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5ADFA21F024F4B00332915 /* DiskCache.swift */; };
 		8C5ADFAF1F024F4B00332915 /* MemoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5ADFA31F024F4B00332915 /* MemoryCache.swift */; };
+		8C5B60011F6B86390014ED3D /* Realm_Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5B60001F6B86390014ED3D /* Realm_Ext.swift */; };
+		8C5B60041F6BB1AD0014ED3D /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5B60031F6BB1AD0014ED3D /* RealmService.swift */; };
+		8C5B60071F6BB3E40014ED3D /* RLMConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5B60061F6BB3E40014ED3D /* RLMConversation.swift */; };
+		8C5B60091F6BB47A0014ED3D /* RLMChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5B60081F6BB47A0014ED3D /* RLMChatMessage.swift */; };
 		8C5F74511F57F2D9007668CB /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5F74501F57F2D9007668CB /* ViewModelType.swift */; };
 		8C60E1B51F550448006205C4 /* ChatTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C60E1B41F550448006205C4 /* ChatTextCell.swift */; };
+		8C60F2611F67BBFA008C3DB7 /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C60F2601F67BBFA008C3DB7 /* RealmRepository.swift */; };
+		8C6197A71F6A1F1100B796C4 /* RealmRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6197A61F6A1F1100B796C4 /* RealmRepresentable.swift */; };
+		8C6197A91F6A216C00B796C4 /* CustomObjectConvertibleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6197A81F6A216C00B796C4 /* CustomObjectConvertibleType.swift */; };
+		8C61F52C1F66675B00ABF3A8 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C61F52A1F66675B00ABF3A8 /* Realm.framework */; };
+		8C61F52D1F66675B00ABF3A8 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C61F52A1F66675B00ABF3A8 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8C61F52E1F66675B00ABF3A8 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C61F52B1F66675B00ABF3A8 /* RealmSwift.framework */; };
+		8C61F52F1F66675B00ABF3A8 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C61F52B1F66675B00ABF3A8 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8C62036D1F56A8DB0030AEC7 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C62036C1F56A8DB0030AEC7 /* UIImage+Ext.swift */; };
 		8C62036F1F56B12E0030AEC7 /* ChatCellUIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C62036E1F56B12E0030AEC7 /* ChatCellUIConfig.swift */; };
 		8C6A70701F0B8663006463C3 /* ChatItemFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6A706E1F0B8663006463C3 /* ChatItemFactory.swift */; };
@@ -81,6 +93,21 @@
 		D442FF775336963CC6B9FC51 /* Pods_RxChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48620F72B06D279BF0A64D48 /* Pods_RxChat.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		8C61F5301F66675B00ABF3A8 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8C61F52F1F66675B00ABF3A8 /* RealmSwift.framework in Embed Frameworks */,
+				8C61F52D1F66675B00ABF3A8 /* Realm.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1F5D51E9ABF6F071EDE3EC1A /* Pods-RxChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeChatDemo/Pods-RxChat.debug.xcconfig"; sourceTree = "<group>"; };
 		2D0A1B12321DDB98A9E3D581 /* Pods-RxChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxChat/Pods-RxChat.debug.xcconfig"; sourceTree = "<group>"; };
@@ -110,6 +137,7 @@
 		65EC04661F25AB690058190F /* DBEngine+Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DBEngine+Chat.swift"; sourceTree = "<group>"; };
 		65EC04671F25AB690058190F /* DBEngine+Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DBEngine+Conversation.swift"; sourceTree = "<group>"; };
 		79C15A977A21A53DF8859239 /* Pods-RxChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeChatDemo/Pods-RxChat.release.xcconfig"; sourceTree = "<group>"; };
+		8C1F02D81F6A85CE00825312 /* RealmRunloopScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmRunloopScheduler.swift; sourceTree = "<group>"; };
 		8C5544A51EFD07CA00CD4472 /* RxChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C5544A81EFD07CA00CD4472 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8C5544AD1EFD07CA00CD4472 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -125,8 +153,17 @@
 		8C5ADFA11F024F4B00332915 /* Convert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Convert.swift; sourceTree = "<group>"; };
 		8C5ADFA21F024F4B00332915 /* DiskCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiskCache.swift; sourceTree = "<group>"; };
 		8C5ADFA31F024F4B00332915 /* MemoryCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryCache.swift; sourceTree = "<group>"; };
+		8C5B60001F6B86390014ED3D /* Realm_Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Realm_Ext.swift; sourceTree = "<group>"; };
+		8C5B60031F6BB1AD0014ED3D /* RealmService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		8C5B60061F6BB3E40014ED3D /* RLMConversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMConversation.swift; sourceTree = "<group>"; };
+		8C5B60081F6BB47A0014ED3D /* RLMChatMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMChatMessage.swift; sourceTree = "<group>"; };
 		8C5F74501F57F2D9007668CB /* ViewModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		8C60E1B41F550448006205C4 /* ChatTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTextCell.swift; sourceTree = "<group>"; };
+		8C60F2601F67BBFA008C3DB7 /* RealmRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
+		8C6197A61F6A1F1100B796C4 /* RealmRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmRepresentable.swift; sourceTree = "<group>"; };
+		8C6197A81F6A216C00B796C4 /* CustomObjectConvertibleType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomObjectConvertibleType.swift; sourceTree = "<group>"; };
+		8C61F52A1F66675B00ABF3A8 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
+		8C61F52B1F66675B00ABF3A8 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
 		8C62036C1F56A8DB0030AEC7 /* UIImage+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		8C62036E1F56B12E0030AEC7 /* ChatCellUIConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCellUIConfig.swift; sourceTree = "<group>"; };
 		8C6A706E1F0B8663006463C3 /* ChatItemFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatItemFactory.swift; sourceTree = "<group>"; };
@@ -168,7 +205,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C61F52C1F66675B00ABF3A8 /* Realm.framework in Frameworks */,
 				8C6DE0121F03A05600543C5D /* libsqlite3.tbd in Frameworks */,
+				8C61F52E1F66675B00ABF3A8 /* RealmSwift.framework in Frameworks */,
 				D442FF775336963CC6B9FC51 /* Pods_RxChat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -179,6 +218,8 @@
 		3221E234AC0D9B5C6A270DDF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8C61F52A1F66675B00ABF3A8 /* Realm.framework */,
+				8C61F52B1F66675B00ABF3A8 /* RealmSwift.framework */,
 				8C6DE0111F03A05600543C5D /* libsqlite3.tbd */,
 				48620F72B06D279BF0A64D48 /* Pods_RxChat.framework */,
 			);
@@ -366,6 +407,7 @@
 			isa = PBXGroup;
 			children = (
 				8C845C7F1F5CFB2300F4AE04 /* ServiceProvider.swift */,
+				8C5B60021F6BB1810014ED3D /* RealmService */,
 				8C83BE271F09FE8300A88A5E /* Config */,
 				8C6DDFFF1F0352FA00543C5D /* RequestService */,
 				8C6DE0001F0352FA00543C5D /* DBService */,
@@ -481,6 +523,7 @@
 		8C5ADF9F1F024F4B00332915 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				8C9A0D761F666CC40066BEFC /* Realm */,
 				8C5ADFA01F024F4B00332915 /* Cache */,
 				8C5ADFA41F024F4B00332915 /* DB */,
 			);
@@ -508,6 +551,24 @@
 				8C6DE00A1F03A02200543C5D /* Table.swift */,
 			);
 			path = DB;
+			sourceTree = "<group>";
+		};
+		8C5B60021F6BB1810014ED3D /* RealmService */ = {
+			isa = PBXGroup;
+			children = (
+				8C5B60051F6BB39B0014ED3D /* RLMObjects */,
+				8C5B60031F6BB1AD0014ED3D /* RealmService.swift */,
+			);
+			path = RealmService;
+			sourceTree = "<group>";
+		};
+		8C5B60051F6BB39B0014ED3D /* RLMObjects */ = {
+			isa = PBXGroup;
+			children = (
+				8C5B60061F6BB3E40014ED3D /* RLMConversation.swift */,
+				8C5B60081F6BB47A0014ED3D /* RLMChatMessage.swift */,
+			);
+			path = RLMObjects;
 			sourceTree = "<group>";
 		};
 		8C62036B1F56A8A20030AEC7 /* Extension */ = {
@@ -584,6 +645,18 @@
 			path = Config;
 			sourceTree = "<group>";
 		};
+		8C9A0D761F666CC40066BEFC /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				8C6197A61F6A1F1100B796C4 /* RealmRepresentable.swift */,
+				8C6197A81F6A216C00B796C4 /* CustomObjectConvertibleType.swift */,
+				8C1F02D81F6A85CE00825312 /* RealmRunloopScheduler.swift */,
+				8C5B60001F6B86390014ED3D /* Realm_Ext.swift */,
+				8C60F2601F67BBFA008C3DB7 /* RealmRepository.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
 		9C0388306B64E9DC5108C48D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -608,6 +681,8 @@
 				8C5544A31EFD07CA00CD4472 /* Resources */,
 				EB0EF6444FC549A7E210CB81 /* [CP] Embed Pods Frameworks */,
 				79099490918DA881561C9E45 /* [CP] Copy Pods Resources */,
+				8C61F5301F66675B00ABF3A8 /* Embed Frameworks */,
+				8C9A0D751F666C3F0066BEFC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -690,6 +765,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RxChat/Pods-RxChat-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		8C9A0D751F666C3F0066BEFC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework/strip-frameworks.sh\"";
+		};
 		EB0EF6444FC549A7E210CB81 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -728,11 +816,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C805B091F0106A500279C0C /* Color+Extension.swift in Sources */,
+				8C5B60041F6BB1AD0014ED3D /* RealmService.swift in Sources */,
 				651FC4221F399E4000097F3B /* EmotionSectionData.swift in Sources */,
 				8C5ADF8C1F01F7F100332915 /* GlobalMacro.swift in Sources */,
 				651FC42D1F3B028100097F3B /* Then.swift in Sources */,
+				8C1F02D91F6A85CE00825312 /* RealmRunloopScheduler.swift in Sources */,
 				651FC4311F3B524A00097F3B /* OYUtils+Nib.swift in Sources */,
 				8C6DE00E1F03A02200543C5D /* ResultSet.swift in Sources */,
+				8C6197A91F6A216C00B796C4 /* CustomObjectConvertibleType.swift in Sources */,
 				8C5F74511F57F2D9007668CB /* ViewModelType.swift in Sources */,
 				651FC4111F346B4F00097F3B /* OYChatShareInputView.swift in Sources */,
 				8C805B0B1F0110F000279C0C /* BasicVCProtocol.swift in Sources */,
@@ -744,6 +835,7 @@
 				8C6DE0021F035F6B00543C5D /* TableBuild.swift in Sources */,
 				8C6DE00D1F03A02200543C5D /* Operate.swift in Sources */,
 				65EC04681F25AB690058190F /* DBEngine+Chat.swift in Sources */,
+				8C5B60011F6B86390014ED3D /* Realm_Ext.swift in Sources */,
 				8C5ADFAB1F024F4B00332915 /* HttpClient.swift in Sources */,
 				8C62036F1F56B12E0030AEC7 /* ChatCellUIConfig.swift in Sources */,
 				651FC4281F3AF2B200097F3B /* OYChatInputViewDelegate.swift in Sources */,
@@ -755,6 +847,7 @@
 				8C85EA8D1F53F9530032D1DF /* ChatBaseCellViewModel.swift in Sources */,
 				8C83BE261F09EE7700A88A5E /* CustomDBFormatConvertible.swift in Sources */,
 				8C85EA8B1F53CC7A0032D1DF /* ChatBaseCell.swift in Sources */,
+				8C5B60071F6BB3E40014ED3D /* RLMConversation.swift in Sources */,
 				65EC04691F25AB690058190F /* DBEngine+Conversation.swift in Sources */,
 				8C5ADFAC1F024F4B00332915 /* RequestSet.swift in Sources */,
 				8CD30C6F1F21DDBE00E29461 /* ConversationModel.swift in Sources */,
@@ -765,6 +858,8 @@
 				8C6DE0041F039F8400543C5D /* DBEngine.swift in Sources */,
 				8C6DE0141F03A0D800543C5D /* OYUtils.swift in Sources */,
 				8C6A70701F0B8663006463C3 /* ChatItemFactory.swift in Sources */,
+				8C5B60091F6BB47A0014ED3D /* RLMChatMessage.swift in Sources */,
+				8C60F2611F67BBFA008C3DB7 /* RealmRepository.swift in Sources */,
 				8C60E1B51F550448006205C4 /* ChatTextCell.swift in Sources */,
 				8C5544A91EFD07CA00CD4472 /* AppDelegate.swift in Sources */,
 				8C845C801F5CFB2300F4AE04 /* ServiceProvider.swift in Sources */,
@@ -776,6 +871,7 @@
 				655C1C181F52692100BF9F5F /* ChatService.swift in Sources */,
 				65EC045B1F25A3CF0058190F /* BSBaseManager.swift in Sources */,
 				655C1C191F52692100BF9F5F /* EmotionService.swift in Sources */,
+				8C6197A71F6A1F1100B796C4 /* RealmRepresentable.swift in Sources */,
 				8C5ADFAD1F024F4B00332915 /* Convert.swift in Sources */,
 				8C805B0E1F0111CD00279C0C /* GlobalConstants.swift in Sources */,
 				8C6DE00B1F03A02200543C5D /* Database.swift in Sources */,
@@ -912,6 +1008,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = A4GF3F53H9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = RxChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.carisok.RxChat;
@@ -929,6 +1029,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = A4GF3F53H9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = RxChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.carisok.RxChat;

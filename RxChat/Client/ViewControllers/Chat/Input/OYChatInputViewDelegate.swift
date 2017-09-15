@@ -108,14 +108,17 @@ class OYChatInputViewDelegateProxy: DelegateProxy, ChatInputDelegate, DelegatePr
     
     func updateKeyboard(keyboardShowHideInfo: KeyboardShowHideInfo) {
         didUpdateInfoSubject.onNext(keyboardShowHideInfo)
+        (_forwardToDelegate as? ChatInputDelegate)?.updateKeyboard(keyboardShowHideInfo: keyboardShowHideInfo)
     }
 
     func sendTextMessage(text: String) {
         didSendTextMsgSubject.onNext(text)
+        (_forwardToDelegate as? ChatInputDelegate)?.sendTextMessage(text: text)
     }
     
     func sendGifMessage(item: EmotionItem) {
         didSendGifMsgSubject.onNext(item.imageGIF ?? "")
+        (_forwardToDelegate as? ChatInputDelegate)?.sendGifMessage(item: item)
     }
     
     func didSelectShareTag(tag: Int) {
@@ -124,6 +127,13 @@ class OYChatInputViewDelegateProxy: DelegateProxy, ChatInputDelegate, DelegatePr
     
     func addEmtionPackage() {
         
+    }
+    
+    deinit {
+        self.didUpdateInfoSubject.on(.completed)
+        self.didSendTextMsgSubject.on(.completed)
+        self.didSendGifMsgSubject.on(.completed)
+        self.didSelectShareTagSubject.on(.completed)
     }
 }
 

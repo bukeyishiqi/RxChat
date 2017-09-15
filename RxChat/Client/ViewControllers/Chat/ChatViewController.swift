@@ -66,6 +66,8 @@ class ChatViewController: UIViewController,UITableViewDelegate {
             /** 调整界面滚动位置*/
             self?.scrollToPosition(position: position)
         }).disposed(by: disposeBag)
+        
+        
     }
 
     private func observerInputView() {
